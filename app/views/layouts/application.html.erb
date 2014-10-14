@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>Tinder</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+		<header> 
+		<% if user_signed_in? %>
+		 	<%=	
+				link_to "Sign Out", 
+				destroy_user_session_path, method: :delete if user_signed_in?
+			%>
+			<%= image_tag Gravatar.new(current_user.email).image_url%>
+		<% end %>
+		<h1>Tinder</h1>
+		</header>
+
+		<div class="content">
+			<% flash.each do |name, err| %>
+				<%= content_tag :div, err, class: name %>
+				<% end %>
+			<%= yield %>
+
+		</div>
+
+		<footer>
+			Talk about Tinder in Tweeter!
+		</footer>
+	</body>
+
+</html>
+

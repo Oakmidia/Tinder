@@ -1,0 +1,21 @@
+<figure>
+<!-- <img src= "http://lorempixel.com/300/300/people" alt="Friend Picture"> -->
+	
+	<%= image_tag Gravatar.new(@friend.email).image_url(s: 300) %>
+	<p> <%= @friend.name%>, <strong> <%= @friend.age %></strong>	</p> 
+
+	<button class="Like">
+		<%= link_to "Like", friends_like_path(id: @friend.id, liked: true), method: :post  %>
+	</button>
+
+	<button class="nope">
+		<%= link_to "nope", friends_like_path(id: @friend.id), method: :post  %>
+	</button>
+
+	<!--Can I use this instead of the previous step? 
+		<= button_to "Like", { :action => "" }, :method => :post %> 
+		<= button_to "nope", { :action => "" }, :method => :post %> 
+	-->
+
+
+</figure>
